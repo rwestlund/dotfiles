@@ -1,0 +1,85 @@
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.6
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Decrement vol.
+"mixer vol -10"
+Control + F11
+# Increment vol.
+"mixer vol +10"
+Control + F12
+
+# Enable second monitor.
+"xrandr && xrandr --auto && xrandr --output LVDS1 --mode 1366x768 && xrandr --output VGA1 --mode 1280x1024 --left-of LVDS1"
+Control + F8
+
+#"slock && mplayer /usr/home/randy/mass_effect_sounds/ME_Interface_Spectre_Status_Reco.m4a || mplayer /usr/home/randy/mass_effect_sounds/ME_Legion_We_Not_Comprehend.m4a"
+"slock"
+Control + F9
+
+# Examples of commands:
+
+#"xbindkeys_show" 
+  #control+shift + q
+
+# set directly keycode (here control + f with my keyboard)
+#"xterm"
+  #c:41 + m:0x4
+
+# specify a mouse button
+#"xterm"
+  #control + b:2
+
+#"xterm -geom 50x20+20+20"
+#   Shift+Mod2+alt + s
+#
+## set directly keycode (here control+alt+mod2 + f with my keyboard)
+#"xterm"
+#  alt + c:0x29 + m:4 + mod2
+#
+## Control+Shift+a  release event starts rxvt
+#"rxvt"
+#  release+control+shift + a
+#
+## Control + mouse button 2 release event starts rxvt
+#"rxvt"
+#  Control + b:2 + Release
+
+##################################
+# End of xbindkeys configuration #
+##################################

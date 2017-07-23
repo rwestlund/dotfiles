@@ -1,0 +1,32 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = False
+       , hideOnStart = False
+       , overrideRedirect = True
+       , persistent = True
+       , allDesktops = True
+       , commands = [ Run Weather "KBOS" ["-t","KBOS: <tempC>C <tempF>F"] 9000 -- BOS every 15 mins
+                    --, Run Network "enp4s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    --, Run Network "wlp3s0" ["-t", "<dev>: <rx>KB|<tx>KB","--minwidth","5","-L","0","-H","32","--normal","green","--high","orange"] 10
+		    , Run DynNetwork ["-t", "<dev>: <rx>KB|<tx>KB","--minwidth","5","-L","0","-H","32","--normal","green","--high","orange"] 10
+                    , Run Cpu ["-p","3","-L","0","-H","50","--normal","green","--high","red"] 10
+		    , Run ThermalZone 0 ["-t","<temp>C","-L","70","-H","80","--low","green","--normal","yellow","--high","red"] 100
+		    --, Run CoreTemp ["-t","<core0>-<core2>C","-L","70","-H","80","--low","green","--normal","yellow","--high","red"] 100
+                    , Run Memory ["-t","Mem: <usedratio>% (<used>M)"] 10
+                    --, Run Swap ["-t","Swap: <usedratio>% (<used>M)"] 10
+		    , Run Volume "default" "Master" ["-t", "Vol: <volume>% <dB>dB <status>", "--", "--on", "", "--off", "M"] 10
+    		    , Run Date "%a %b %_d %Y %H:%M:%S(%I)" "date" 10
+		    --, Run Battery ["-t","<left>%/<timeleft> remaining, <watts> <acstatus>","-d","1"] 10 -- watts and AC status aren't working
+		    , Run Mail [("inbox","~/Mail/INBOX")] "mail"
+		    , Run Com "~/common/scripts/mpd_info.pl" [] "mpd" 100
+		    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       --, template = "%cpu% %thermal0% | %coretemp% | %memory% | %dynnetwork% | %i3status% | }{ | %mail% | %default:Master% | %KBOS% | <fc=#ee9a00>%date%</fc>"
+       , template = "%cpu% %thermal0% | %memory% | %dynnetwork% | %StdinReader% | }{ | %mail% | %default:Master% | %KBOS% | <fc=#ee9a00>%date%</fc>"
+       }

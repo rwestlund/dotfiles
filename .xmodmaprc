@@ -1,0 +1,5 @@
+! make caps do esc
+clear Lock
+keysym Caps_Lock = Escape
+! R alt is underscore
+keycode 108=0x5f

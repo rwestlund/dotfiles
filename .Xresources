@@ -1,6 +1,6 @@
 ! set color
 !xterm*termName: xterm-256color
-xterm*termName: xterm-color
+!xterm*termName: xterm-color
 ! UTF-8
 xterm*locale: true
 ! fix alt key for shortcuts
@@ -15,3 +15,42 @@ xterm*font: 7x13
 ! copy paste
 !xterm*selectToClipboard: true
 !st*selectToClipboard: true
+
+!! URXVT
+!urxvt*letterSpace: -2
+urxvt*letterSpace: -0.5
+urxvt*font: xft:inconsolata:size=11
+!urxvt*font: xft:terminus:size=9
+urxvt*scrollBar: false
+urxvt*borderless: truee
+urxvt*secondaryScroll: true
+urxvt*urlLauncher: firefox
+
+xft.antialias: true
+xft.rbga: rgb
+xft.autohint: 0
+xft.lcdfilter: lcddefault
+xft.hinting: true
+xft.hintstyle: hintslight
+
+
+! Dracula Xresources palette
+! https://github.com/dracula/xresources/blob/master/Xresources
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6

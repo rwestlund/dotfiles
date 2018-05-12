@@ -202,6 +202,7 @@ endif
 " YouCompleteMe plugin settings. Disabled because it isn't currently installed.
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_server_python_interpreter = '/usr/local/bin/python2.7'
 
 " Testing powerline.
 "python from powerline.vim import setup as powerline_setup

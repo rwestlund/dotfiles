@@ -1,7 +1,7 @@
 xmodmap .xmodmaprc
 xbindkeys
 
-st &
+urxvt &
 redshift &
 (conky | while read line; do xsetroot -name "$line"; done) &
 exec dwm

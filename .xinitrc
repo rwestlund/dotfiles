@@ -1,5 +1,6 @@
 xmodmap .xmodmaprc
 xbindkeys
+xrdb .Xresources
 
 urxvt &
 redshift &

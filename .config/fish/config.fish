@@ -1,6 +1,6 @@
 set -x EDITOR vim
 set -x PAGER less
-set -x GOPATH /usr/home/randy/code/go
+set -x GOPATH /usr/home/randy/go
 set -x PATH $PATH $GOPATH/bin
 
 # Enable ls colors The default (shown first) is changed to make directories

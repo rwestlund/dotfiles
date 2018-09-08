@@ -60,7 +60,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "roxterm", NULL };
+static const char *incrvol[] = { "mixer", "vol", "+1:+1", NULL};
+static const char *decrvol[] = { "mixer", "vol", "-1:-1", NULL};
 
+#define XK_XF86AudioLowerVolume 0x1008ff11
+#define XK_XF86AudioRaiseVolume 0x1008ff13
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -96,6 +100,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0x0,                          XK_XF86AudioRaiseVolume,    spawn,           {.v = incrvol } },
+	{ 0x0,                          XK_XF86AudioLowerVolume,    spawn,           {.v = decrvol } },
 };
 
 /* button definitions */

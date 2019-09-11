@@ -74,6 +74,8 @@ set incsearch
 set hlsearch
 " Try to keep at least one line above or below the cursor when scrolling.
 set scrolloff=1
+" Don't let commandT look here.
+set wildignore=*/node_modules,*/build,*/vendor,*/dist
 
 " COLOR SETTINGS
 

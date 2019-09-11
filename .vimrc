@@ -91,7 +91,7 @@ set colorcolumn=80
 " Make that bar gray, showing text foreground as red so it sticks out more.
 highlight ColorColumn ctermbg=235 ctermfg=Red
 
-highlight Search ctermbg=DarkGray
+highlight Search ctermbg=Yellow
 
 " MISC SETTINGS
 

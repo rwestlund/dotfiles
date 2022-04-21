@@ -28,10 +28,10 @@ set expandtab
 " Use shiftwidth rather than tabstop when tabbing at the beginning of a line.
 " Also makes Backspace delete shiftwidth spaces, rather than one.
 set smarttab
-" Tabs are 4 spaces wide.
-set tabstop=4
+" Tabs are 2 spaces wide.
+set tabstop=2
 " Indentation uses shiftwidth. Pressing Tab uses tabstop.
-set shiftwidth=4
+set shiftwidth=2
 " Intelligently set indentation policy based on filetype. If this causes
 " problems, just use autoindent and smartindent.
 filetype plugin indent on
@@ -75,7 +75,7 @@ set hlsearch
 " Try to keep at least one line above or below the cursor when scrolling.
 set scrolloff=1
 " Don't let commandT look here.
-set wildignore=*/node_modules,*/build,*/vendor,*/dist
+set wildignore=*/node_modules,*/build,*/vendor,*/dist,*/cache
 
 " COLOR SETTINGS
 
@@ -83,15 +83,24 @@ set wildignore=*/node_modules,*/build,*/vendor,*/dist
 syntax on
 " Make comments lighter and bold, rather than DarkBlue, which is much easier
 " to read on a black terminal.
-highlight Comment ctermfg=Blue
+"highlight Comment ctermfg=Blue
 " Highlight spelling mistakes in red. Enable spell checking with ":set spell".
-highlight SpellBad ctermbg=Red
-" Draw a bar at 80 columns so I know when I've gone over.
-set colorcolumn=80
+"highlight SpellBad ctermbg=Red
+" Draw a bar at 120 columns so I know when I've gone over.
+set colorcolumn=120
 " Make that bar gray, showing text foreground as red so it sticks out more.
-highlight ColorColumn ctermbg=235 ctermfg=Red
+"highlight ColorColumn ctermbg=235 ctermfg=Red
 
-highlight Search ctermbg=Yellow
+"highlight Search ctermbg=Yellow
+
+"highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17
+"highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17
+"highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+"highlight DiffText   cterm=bold ctermfg=10 ctermbg=88
+"highlight DiffAdd    cterm=bold ctermbg=LightBlue
+"highlight DiffDelete cterm=bold ctermbg=LightBlue
+"highlight DiffChange cterm=bold ctermbg=LightBlue
+"highlight DiffText   cterm=bold ctermbg=DarkRed
 
 " MISC SETTINGS
 
@@ -204,9 +213,32 @@ endif
 " YouCompleteMe plugin settings. Disabled because it isn't currently installed.
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_server_python_interpreter = '/usr/local/bin/python2.7'
+"let g:ycm_server_python_interpreter = '/usr/local/bin/python2.7'
 
 " Testing powerline.
 "python from powerline.vim import setup as powerline_setup
 "python powerline_setup()
 "python del powerline_setup
+
+
+
+function! GoToNextIndent(inc)
+    " Get the cursor current position
+    let currentPos = getpos('.')
+    let currentLine = currentPos[1]
+    let matchIndent = 0
+
+    " Look for a line with the same indent level whithout going out of the buffer
+    while !matchIndent && currentLine != line('$') + 1 && currentLine != -1
+        let currentLine += a:inc
+        let matchIndent = indent(currentLine) == indent('.')
+    endwhile
+
+    " If a line is found go to this line
+    if (matchIndent)
+        let currentPos[1] = currentLine
+        call setpos('.', currentPos)
+    endif
+endfunction
+nnoremap ni :call GoToNextIndent(1)<CR>
+nnoremap pi :call GoToNextIndent(-1)<CR>

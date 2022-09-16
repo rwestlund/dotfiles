@@ -203,6 +203,9 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " Command-T plugin settings.
 " Map ,t to launch the file search window.
 nmap <leader>t :CommandT<CR>
+nmap <leader>p :CtrlP<CR>
+" Ignore files in .gitignore.
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Load bundled matchit.vim, which allows '%' to match XML tags, but only if the
 " user hasn't installed a newer version manually.

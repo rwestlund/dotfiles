@@ -3,6 +3,7 @@
 
 " Load pathogen plugin. It manages plugins for me, so I don't have to load them
 " manually.
+let g:pathogen_disabled = ['YouCompleteMe']
 call pathogen#infect()
 " Load plugin documentation.
 call pathogen#helptags()
@@ -107,7 +108,7 @@ set colorcolumn=120
 " Enable omnicompletion, using a tags file (e.g. ctags). Use ^X^O, then ^N/^P
 " to autocomplete function and variable names.
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+""set omnifunc=syntaxcomplete#Complete
 " This leader key is used in many plugin shortcuts.
 let mapleader = ","
 " This is necessary because I use fish, which isn't a POSIX shell. Vim needs
@@ -137,7 +138,7 @@ let g:go_highlight_build_constraints = 1
 " Show types (:GoInfo)
 let g:go_auto_type_info = 1
 
-let g:syntastic_go_checkers = [ 'go', 'golint', 'errcheck' ]
+""let g:syntastic_go_checkers = [ 'go', 'golint', 'errcheck' ]
 
 " For gotags.
 let g:tagbar_type_go = {
@@ -174,27 +175,40 @@ let g:tagbar_type_go = {
 " Map F8 to open Tagbar window and close after a jump.
 nmap <F8> :TagbarOpenAutoClose<CR>
 
+let js_fixers = ['prettier', 'eslint']
+let g:ale_completion_enabled = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'ruby': ['rubocop'],
+      \ 'javascript': js_fixers,
+      \ 'javascript.jsx': js_fixers,
+      \ 'typescript': js_fixers,
+      \ 'typescriptreact': js_fixers,
+\}
+"let g:ale_completion_autoimport = 1
+"set omnifunc=ale#completion#OmniFunc
+
 " Syntastic plugin settings. Syntastic does realtime syntax checking for a
 " wide variety of languages. It will automatically open a bottom pane with
 " your syntax mistakes for e.g. Python/C/LaTeX.
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+""let g:syntastic_always_populate_loc_list = 1
+""let g:syntastic_auto_loc_list = 1
 " Run the checks when a file os open.
-let g:syntastic_check_on_open = 1
+""let g:syntastic_check_on_open = 1
 " Don't bother when I save and quit.
-let g:syntastic_check_on_wq = 0
+""let g:syntastic_check_on_wq = 0
 " When writing C code, use clang rather than GCC and make sure these
 " directories are passed with -I to the compiler. This is reasonably
 " BSD-specific, as Linux doesn't use /usr/local.
-let g:syntastic_c_compiler = 'clang'
-let g:syntastic_c_include_dirs = [ '/usr/local/avr/include', '/usr/include', '/usr/local/include' ]
+""let g:syntastic_c_compiler = 'clang'
+""let g:syntastic_c_include_dirs = [ '/usr/local/avr/include', '/usr/include', '/usr/local/include' ]
 " If my current directory path includes "uvfirm", use avrgcc. This is for a
 " cross-compilation project, so it shouldn't use the default checker.
-autocmd FileType c if stridx(expand("%:p"), "uvfirm") > 0 |
-        \ let b:syntastic_checkers = ["avrgcc"] | endif
+""autocmd FileType c if stridx(expand("%:p"), "uvfirm") > 0 | let b:syntastic_checkers = ["avrgcc"] | endif
 
 " Rust syntax checking.
-let g:syntastic_rust_checkers = ['rustc']
+""let g:syntastic_rust_checkers = ['rustc']
 
 " Fugitive plugin settings.
 " Add git branch name to the status line.
